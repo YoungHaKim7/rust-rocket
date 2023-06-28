@@ -25,17 +25,24 @@
 # RUN pwd
 # CMD ["rust"]
 
-FROM rust:1.70 as builder
+# FROM rust:1.70 as builder
+FROM rust:1-slim-buster as builder
+
 RUN USER=root
 
 RUN mkdir rocket-docker-test
 WORKDIR /rocket-docker-test
 ADD . ./
+RUN pwd
+RUN ls -al
 RUN cargo clean && cargo build --release
 
 FROM debian:bullseye
 ARG APP=/user/src/app
 RUN mkdir -p {$APP}
+
+RUN pwd
+RUN ls -al
 
 # Copy the compiled binaries into the new container.
 COPY --from=builder /rocket-docker-test/target/release/rocket-docker-test ${APP}/rocket-docker-test
