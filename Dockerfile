@@ -4,6 +4,7 @@ RUN echo $PATH
 COPY . .
 # COPY ./src/templates ./templates/.
 RUN ls -a
+RUN tree
 RUN cargo install --path .
 
 
