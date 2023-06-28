@@ -11,6 +11,6 @@ RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
 USER worker:worker
 
 COPY --from=builder /usr/local/cargo/bin/rust /usr/local/bin/rust
-ENV ROCKET_ADDRESS=0.0.0.0
+ENV ROCKET_ADDRESS=127.0.0.0
 EXPOSE 8000
 CMD ["rust"]
