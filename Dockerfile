@@ -34,7 +34,7 @@ RUN mkdir rocket-docker-test
 WORKDIR /rocket-docker-test
 ADD . ./
 RUN pwd
-RUN ls -al
+RUN ./user/src/app/ls -al
 RUN cargo clean && cargo build --release
 
 FROM debian:bullseye
