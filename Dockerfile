@@ -4,6 +4,7 @@ RUN echo $PATH
 COPY . .
 # COPY ./src/templates ./templates/.
 RUN ls -al
+RUN pwd
 RUN cargo install --path .
 
 
@@ -15,8 +16,11 @@ USER worker:worker
 
 COPY --from=builder /usr/local/cargo/bin/rust /usr/local/bin/rust
 RUN ls -al
+RUN pwd
 ENV ROCKET_ADDRESS=127.0.0.0
 EXPOSE 8000
 RUN cd usr
+RUN pwd
 RUN ls -al
+RUN pwd
 CMD ["rust"]
