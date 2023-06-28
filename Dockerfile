@@ -3,7 +3,6 @@ WORKDIR /app
 RUN echo $PATH
 COPY . .
 COPY ./src/templates ./templates/.
-RUN pws
 RUN ls -a
 RUN cargo install --path .
 
@@ -15,8 +14,8 @@ RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
 USER worker:worker
 
 COPY --from=builder /usr/local/cargo/bin/rust /usr/local/bin/rust
-RUN pws
 RUN ls -a
 ENV ROCKET_ADDRESS=127.0.0.0
 EXPOSE 8000
+RUN ls -a
 CMD ["rust"]
