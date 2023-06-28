@@ -1,6 +1,7 @@
 FROM rust:1-slim-buster as builder
 WORKDIR /app
 COPY . .
+COPY ./src/templates .
 RUN cargo install --path .
 
 
